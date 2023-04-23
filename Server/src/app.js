@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRoute from "./routes/userRoute.js";
 
 
 const app = express();
@@ -18,9 +19,9 @@ try {
 }}
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello World!');
+// });
 
 app.listen(5000, () => {
   connect();
