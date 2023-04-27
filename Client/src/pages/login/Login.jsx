@@ -1,26 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 import "./Login.scss";
-import axios from "axios";
+import newRequest from "../../utils/newRequest";
 
 
 
 function Login() {
-
   const [username, setUsername ] = useState("");
   const [ password, setPassword] = useState("");
   const [error, setError ] = useState(null);
 
+   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefualt();
     try{
-  const res = await axios.post("http://localhost:8000/api/auth/login", { 
-    username,
-    password,
-  });
-  console.log(res);  
+    const res = await newRequest.post("/auth/login", { username, password });
+    localStorage.setItem("currentUser", JSON.stringify(res.data));
+    navigate("/");
   } catch(err) {
-    setError(err);
-    console.log(err);
+    setError(err.response.data);
   };
   };
     
@@ -38,6 +36,7 @@ function Login() {
           placeholder="Christmoses1999@gmail.com" onChange={e => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
+          {error && error}
         </form>
     </div>
   );
