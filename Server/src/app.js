@@ -9,7 +9,7 @@ import orderRoute from "./routes/orderRoute.js";
 import messageRoute from "./routes/messageRoute.js";
 import conversationRoute from "./routes/coversationRoute.js";
 import cookieParser from "cookie-parser";
-
+import cors from "cors";
 
 
 const app = express();
@@ -26,6 +26,7 @@ try {
 }}
 
 
+app.use(cors({ origin: "http://localhost:5173", Credential: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -37,6 +38,7 @@ app.use("/api/reviews", reviewRoute);
 app.use("/api/messages", messageRoute);
 app.use("/api/conversations", conversationRoute);
 
+
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Somethings Went Wrong!";
@@ -47,5 +49,5 @@ app.use((err, req, res, next) => {
 
 app.listen(5000, () => {
   connect();
-  console.log('Server listening on port 5000');
+  console.log('Server listening on port 8000');
 });

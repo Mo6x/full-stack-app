@@ -1,15 +1,17 @@
 {
   "name": "full-stack-app",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "Dev": "node ./bin/www",
+    "type": "modules",
     "start": "nodemon ./src/app.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "~4.16.1",
