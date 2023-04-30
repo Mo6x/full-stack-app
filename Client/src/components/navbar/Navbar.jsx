@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
+import newRequest from "../../utils/newRequest";
 
 
 
@@ -23,8 +24,19 @@ function Navbar() {
   }, []);
 
   // const currentUser = null
-
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+    await newRequest.post("auth/logout");
+    localStorage.setItem("currentUser", null);
+    Navigate("/");
+    } catch (err) {
+      console.log(err);
+      }
+ };
 
   return (
     <div className={active || pathname !== "/" ? "navbar active" : "navbar"}>
@@ -63,7 +75,7 @@ function Navbar() {
                 <Link className="link" to="/messages">
                   Messages
                 </Link>
-                <Link className="link" to="/">
+                <Link className="link" onClick={handleLogout}>
                   Logout
                 </Link>
               </div>}
