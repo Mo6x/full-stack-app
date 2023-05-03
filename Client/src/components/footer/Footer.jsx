@@ -52,15 +52,15 @@ function Footer() {
             <span>Community Standards</span>
           </div>
           <div className="item">
-            <h2>More From Fiverr</h2>
-            <span>Liverr Business</span>
-            <span>Liverr Pro</span>
-            <span>Liverr Logo Maker</span>
-            <span>Liverr Guides</span>
+            <h2>More From Africa Market</h2>
+            <span>Market Business</span>
+            <span>Africa Pro</span>
+            <span>Africa Logo Maker</span>
+            <span>Africa Guides</span>
             <span>Get Inspired</span>
-            <span>Liverr Select</span>
+            <span>Africa Select</span>
             <span>ClearVoice</span>
-            <span>Liverr Workspace</span>
+            <span>market Workspace</span>
             <span>Learn</span>
             <span>Working Not Working</span>
           </div>
@@ -68,8 +68,8 @@ function Footer() {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>liverr</h2>
-            <span>© Liverr International Ltd. 2023</span>
+            <h2>Market Place</h2>
+            <span>©Africa International Ltd. 2023</span>
           </div>
           <div className="right">
             <div className="social">

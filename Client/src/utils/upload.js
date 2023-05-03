@@ -8,10 +8,9 @@ const upload = async (file) => {
 
     try{
     const res = await axios.post(
-
-    );
-
-    const { url } = res.data;
+       "https://res.cloudinary.com/dgizu7mlb/image/upload/moses/sample.jpg→upload", data
+        );
+     const { url } = res.data;
     return url;
     } catch (err) {
     console.log(err);

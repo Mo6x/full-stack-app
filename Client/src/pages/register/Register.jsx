@@ -3,7 +3,9 @@ import "./Register.scss"
 import { useState, useNavigate } from "react";
 import upload from "../../utils/upload";
 import newRequest from "../../utils/newRequest";
-
+import {fill} from "@cloudinary/url-gen/actions/resize";
+import {CloudinaryImage} from '@cloudinary/url-gen';
+ 
 
 
 function Register() {
