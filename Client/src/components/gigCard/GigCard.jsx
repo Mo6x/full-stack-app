@@ -2,11 +2,16 @@ import React from "react";
 import "./GigCard.scss";
 import { Link } from "react-router-dom";
 
+
+
 const GigCard = ({ item }) => {
+
+
+  
   return (
     <Link to="/gig/123" className="link">
       <div className="gigCard">
-        <img src={item.img} alt="" />
+        <img src={item.cover} alt="" />
         <div className="info">
           <div className="user">
             <img src={item.pp} alt="" />
@@ -25,7 +30,6 @@ const GigCard = ({ item }) => {
             <span>STARTING AT</span>
             <h2>
               $ {item.price}
-              <sup>99</sup>
             </h2>
           </div>
         </div>
