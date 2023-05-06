@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 
-const GigScheme = new Schema({
+const GigSchema = new Schema({
    userId: {
       type: String,
       required: true,
@@ -31,10 +31,6 @@ const GigScheme = new Schema({
     type: Number,
     required: true,
  },
- userId: {
-    type: String,
-    required: true,
- },
  cover: {
     type: String,
     required: true,
@@ -43,9 +39,9 @@ const GigScheme = new Schema({
     type: [String],
     required: false,
  },
- cat: {
+ cats: {
     shortTitle: String,
-    required: true,
+   //  required: true,
  },
  shortDesc: {
     type: String,
@@ -70,4 +66,5 @@ const GigScheme = new Schema({
 }, {
     timestamps: true
 });
-export default mongoose.model("Gig", GigScheme);
+
+export default mongoose.model("Gig", GigSchema);

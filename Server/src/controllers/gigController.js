@@ -26,7 +26,7 @@ export const deleteGig = async (req, res, next)  => {
         const gig = await Gig.findById(req.params.id);
         if(gig.userId !== req.body);
         return next(createError(403, "You can delete only your gig!"));
-        
+
         await Gig.findByIdAndDelete(req.params.id);
         res.status(200).send("Gig has been deleted!");
      } catch (err) {
@@ -57,7 +57,7 @@ export const getGigs = async (req, res, next)  => {
     ...(q.search && { title: { $regex: q.search, $options: "i" } }),
     };
     try{
-        const gigs = await Gig.find(filters);
+        const gigs = await Gig.find(filters).sort({ [q.sort]: -1});
         res.status(200).send(gigs);
     } catch(err) {
         next(err);
