@@ -29,7 +29,8 @@ const { isLoading, error, data } = useQuery({
           <p>{item.desc}</p>
           <div className="star">
             <img src="./img/star.png" alt="" />
-            <span>{item.star}</span>
+            <span>{!isNaN(item.totalStars / item.starNumber) &&
+              Math.random(item.totalStars / item.starNumber)}</span>
           </div>
         </div>
         <hr />
