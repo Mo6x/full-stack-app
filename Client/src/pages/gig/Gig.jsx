@@ -11,13 +11,25 @@ import newRequest from "../../utils/newRequest";
 function Gig() {
   const { id } = useParams();
 
-  const { isLoading, error, data, refetch } = useQuery({
+  const { isLoading, error, data,} = useQuery({
     queryKey: ["gig"],
     queryFn: () => 
     newRequest.get(`/gigs/single/${id}`).then((res) => {
       return res.data;
     }),
   });
+
+
+  const { 
+    isLoading: isLoadingUser,
+    error: errorUser,
+    data: dataUser,
+  } = useQuery({ queryKey: ["user"], queryFn: () => 
+    newRequest.get(`/user/${data.userId}`).then((res) => {
+      return  res.data;
+    }),
+});
+
 
   return (
     <div className="gig">
@@ -30,22 +42,29 @@ function Gig() {
         <div className="left">
           <span className="breadcrumbs">African {">"}Graphics & Design {">"}</span>
           <h1>{data.title}</h1>
-          <div className="user">
+         {isLoadingUser ? ( 
+          "loading" 
+         ) : errorUser ? (
+          "Something went wrong!"
+         ) : (
+         <div className="user">
             <img
               className="pp"
-              src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src={dataUser.img || "/img/noavatar.jpg"}
               alt=""
             />
-            <span>Anna Bell</span>
+            <span>{dataUser.username}</span>
+            {!isNaN(data.totalStars / data.starNumber) && (
             <div className="stars">
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <img src="/img/star.png" alt="" />
-              <span>5</span>
+              {Array(Math.round(data.totalStars / data.starNumber))
+                     .fill().map((item, i) => (
+                      <img src="/img/star.png" alt="" key={i}/>
+                     ))} 
+              <span>{Math.round(data.totalStars / data.starNumber)}</span>
             </div>
-          </div>
+            )}
+          </div> 
+          )}
           <Slider slidesToShow={1} arrowsScroll={1} className="slider">
             {data.images.map((img) (
               <img key={img} src={img} alt=""
@@ -53,26 +72,30 @@ function Gig() {
             ))}
           </Slider>
           <h2>About This Gig</h2>
-          <p>
-            {data.desc}
-          </p>
+          <p>{data.desc} </p>
+         {isLoadingUser ? (
+           "loading"
+         ) : errorUser ? (
+           "Something went weong!"
+         ) : (
           <div className="seller">
             <h2>About The Seller</h2>
             <div className="user">
               <img
-                src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src={dataUser.img || "/img/noavatar.jpg"}
                 alt=""
               />
               <div className="info">
-                <span>Anna Bell</span>
-                <div className="stars">
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <img src="/img/star.png" alt="" />
-                  <span>5</span>
+                <span>{dataUser.username}</span>
+                {!isNaN(data.totalStars / data.starNumber) && (
+                 <div className="stars">
+                  {Array(Math.round(data.totalStars / data.starNumber))
+                     .fill().map((item, i) => (
+                      <img src="/img/star.png" alt="" key={i}/>
+                     ))} 
+                 <span>{Math.round(data.totalStars / data.starNumber)}</span>
                 </div>
+                 )}
                 <button>Contact Me</button>
               </div>
             </div>
@@ -80,7 +103,7 @@ function Gig() {
               <div className="items">
                 <div className="item">
                   <span className="title">From</span>
-                  <span className="desc">USA</span>
+                  <span className="desc">{dataUser.country}</span>
                 </div>
                 <div className="item">
                   <span className="title">Member since</span>
@@ -100,14 +123,10 @@ function Gig() {
                 </div>
               </div>
               <hr />
-              <p>
-                My name is Anna, I enjoy creating AI generated art in my spare
-                time. I have a lot of experience using the AI program and that
-                means I know what to prompt the AI with to get a great and
-                incredibly detailed result.
-              </p>
+              <p>{dataUser.desc}</p>
             </div>
           </div>
+         )}
           <div className="reviews">
             <h2>Reviews</h2>
             <div className="item">
