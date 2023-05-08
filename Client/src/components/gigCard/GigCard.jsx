@@ -17,7 +17,7 @@ const { isLoading, error, data } = useQuery({
 
 
   return (
-    <Link to="/gig/123" className="link">
+    <Link to={`/gig/${item._id}`} className="link">
       <div className="gigCard">
         <img src={item.cover} alt="" />
         <div className="info">
@@ -29,8 +29,10 @@ const { isLoading, error, data } = useQuery({
           <p>{item.desc}</p>
           <div className="star">
             <img src="./img/star.png" alt="" />
-            <span>{!isNaN(item.totalStars / item.starNumber) &&
-              Math.random(item.totalStars / item.starNumber)}</span>
+            <span>
+              {!isNaN(item.totalStars / item.starNumber) &&
+              Math.random(item.totalStars / item.starNumber)}
+            </span>
           </div>
         </div>
         <hr />
