@@ -37,7 +37,8 @@ export const createReview = async (req, res, next) => {
 export const getReviews = async (req, res, next) => {
     
     try{
-    const reviews = awaitReview.find({ })
+    const reviews = await Review.find({ gigId: res.body.gigId });
+    res.status(201).send(reviews)
     }catch(err) {
       next(err);
     }
