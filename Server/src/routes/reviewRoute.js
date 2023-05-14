@@ -11,7 +11,7 @@ import {
 const router = express.Router();
 
 router.post("/", verifyToken, createReview);
-router.get("/:id", getReviews);
+router.get("/:gigid", getReviews);
 router.delete("/:id", deleteReviews);
 
 
