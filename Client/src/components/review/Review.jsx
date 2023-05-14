@@ -4,7 +4,7 @@ import "./Review.scss";
 
 
 
-const Review = () => {
+const Review = ({review}) => {
   return (
     <div className="reviews">
             <div className="user">
@@ -25,21 +25,12 @@ const Review = () => {
                 </div>
                 </div>
               <div className="stars">
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <img src="/img/star.png" alt="" />
-                <span>5</span>
+                {Array(review.star).filter().map((item, i) => (
+                     <img src="/img/star.png" alt=""  key={i} />
+                ))}
+              <span>{ review.star}</span>
               </div>
-              <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
-              </p>
+              <p>{review.desc}</p>
               <div className="helpful">
                 <span>Helpful?</span>
                 <img src="/img/like.png" alt="" />
