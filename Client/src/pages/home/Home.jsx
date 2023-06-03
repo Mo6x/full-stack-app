@@ -7,6 +7,9 @@ import CatCard from "../../components/catCard/CatCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { cards, projects } from "../../data";
 
+
+
+
 function Home() {
   return (
     <div className="home">
